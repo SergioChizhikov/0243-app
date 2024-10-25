@@ -1,5 +1,41 @@
+import styles from "./Profile.module.css";
 
 
-export const Profile = () => {
-  return <h3>Страница с профилем</h3>;
+const mailStyle = {
+  color: "blue",
+  fontSize: 2 + 'rem'
+}
+
+export const Profile = (props) => {
+  let user = props.function();
+  console.log(user);
+
+  return (
+    <>
+      <h3>Профиль пользователя</h3>
+      <div className="row">
+        <div className="col-md-8">
+          <h4 className={styles.name}>
+            Фамилия имя: <span>{user.lastname} {user.name}</span>
+          </h4>
+          <p className={styles.id}>
+            ID: <span>{user.id}</span>
+          </p>
+          <p style={mailStyle}>
+            Email: <span>{user.email}</span>
+          </p>
+          <p style={{color: "red", fontStyle: "italic", fontSize: 24}}>
+            Обо мне: <span>{user.about}</span>
+          </p>
+        </div>
+        <div className="col-md-4">
+          <img
+            className={styles.img}
+            src={user.avatar}
+            alt=""
+          />
+        </div>
+      </div>
+    </>
+  );
 };
