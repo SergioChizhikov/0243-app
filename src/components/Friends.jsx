@@ -19,11 +19,32 @@ const TableRow = (props) => {
 export class Friends extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { userRow: [] };
+    this.state = { Row: [] };
   }
 
    componentDidMount() {
-    
+
+    this.props.function().then((users) => {
+            console.log(users);
+            let usersCount = users.length;
+            let userRow = [];
+
+            for (let i = 0; i < usersCount; i++) {
+              userRow.push(
+                <TableRow
+                  key={i}
+                  index={i}
+                  id={users[i].id}
+                  name={users[i].name}
+                  lastname={users[i].lastname}
+                  email={users[i].email}
+                />
+              );
+            }
+            this.setState({Row: userRow})
+    });
+
+
    }
 
   render() {
@@ -46,7 +67,7 @@ export class Friends extends React.Component {
               </tr>
             </thead>
             <tbody>
-
+              {this.state.Row}
             </tbody>
           </table>
         </div>
@@ -54,18 +75,3 @@ export class Friends extends React.Component {
     );
   }
 }
-
-
-
-export const Friends = (props) => {
-  let users = props.function();
-  console.log(users);
-  let usersCount = Object.keys(users).length;
-  let userRow = [];
-
-  for (let i = 0; i < usersCount; i++) {
-    userRow.push(<TableRow key={i} index={i} id={users[i].id} name={users[i].name} lastname={users[i].lastname} email={users[i].email}/>);
-  }
-
-
-};

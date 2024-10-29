@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-settings {
+    @apply py-2 px-6 text-2xl bg-violet-600 text-white font-bold shadow-md rounded-full hover:bg-violet-400 focus:outline-none ring ring-violet-700 ring-opacity-75;
+  }
+}
